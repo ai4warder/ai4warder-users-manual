@@ -14,13 +14,7 @@
     - [Windows（PowerShell）](#windowspowershell)
     - [安装与启动 Claude Code](#安装与启动-claude-code)
     - [验证配置](#验证配置)
-  - [六、安装并使用 ai4warder-cc-statusline 状态栏插件](#六安装并使用-ai4warder-cc-statusline-状态栏插件)
-    - [能看到哪些信息](#能看到哪些信息)
-    - [前置条件](#前置条件)
-    - [安装方式一：Claude Code 插件（推荐）](#安装方式一claude-code-插件推荐)
-    - [安装方式二：手动安装](#安装方式二手动安装)
-    - [小提示](#小提示)
-  - [七、常见问题](#七常见问题)
+  - [六、常见问题](#六常见问题)
 
 ---
 
@@ -38,12 +32,12 @@
 - **方式二：手动填邀请码**
   在注册页「**邀请码（选填）**」输入框填入 **8 位邀请码**（仅大写字母和数字，会自动转大写），再正常完成注册。
 
+**系统会向你的邮箱发送一封验证邮件**。请打开邮件，点击其中的验证链接（或访问 `https://ai4warder.com/wallet/verify-email?token=...`）完成邮箱验证。
+
 > **说明**
 > - 邀请码为**选填**，留空即为普通注册，不影响使用。
 > - 邀请码为 8 位，不含字母 I、O 和数字 0、1；填错会提示无效，请核对后重填。
 > - 想邀请别人？登录后在「Ai4Warder 用户中心」点「**邀请好友**」复制你的专属邀请链接，或在「**我的**」里复制邀请码。
-
-![TODO]()
 
 ### 普通注册
 
@@ -51,10 +45,10 @@
 2. 填写以下信息：
    - **邮箱**：用作登录账号，请使用真实可收信的邮箱
    - **密码**：至少 8 位，并再次输入确认
-3. 点击「注册」。系统会向你的邮箱发送一封**验证邮件**。
-4. 打开邮件，点击其中的验证链接（或访问 `https://ai4warder.com/wallet/verify-email?token=...`）完成邮箱验证。
+3. 点击「注册」。
+4. **系统会向你的邮箱发送一封验证邮件**。请打开邮件，点击其中的验证链接（或访问 `https://ai4warder.com/wallet/verify-email?token=...`）完成邮箱验证。
 
-![TODO]()
+![Register](./imgs/register.png)
 
 > **注意**
 > - 没收到验证邮件？先查看垃圾邮件箱；仍未收到可在登录页使用「重新发送验证邮件」。
@@ -72,8 +66,6 @@
    - **充值管理**：兑换额度卡
    - **账单 / 交易记录**：按日/月查看消费明细，支持导出 CSV
 
-![TODO]()
-
 **忘记密码**：在登录页点击「忘记密码」，输入邮箱后按邮件指引重置即可。
 
 ---
@@ -82,13 +74,13 @@
 
 本服务采用**额度卡**（兑换码）方式充值，余额以**美元**（USD）计量，按实际调用成本扣费。
 
-1. 从管理员或销售渠道获取一张**额度卡兑换码**，格式类似：
+1. 从公告板获得购买充值卡的链接，购买后得到**额度卡兑换码**，格式类似：
    `CC-XXXX-XXXX-XXXX-XXXX`
 2. 登录后进入Ai4Warder 用户中心，打开「**充值管理**」页签。
 3. 在输入框粘贴兑换码，点击「**兑换**」。
 4. 兑换成功后页面会显示**本次充值金额**和**充值后新余额**，该金额立即计入你的钱包余额。
 
-![TODO]()
+![Deposit](./imgs/deposit.png)
 
 可在「**交易记录**」中查看每一笔充值与扣费历史。
 
@@ -112,7 +104,7 @@ API Key 是你调用中转服务的认证凭证。
    af_xxxxxxxxxxxxxxxxxxxxxxxx
    ```
 
-![TODO]()
+![API KEY](./imgs/api-key.png)
 
 > ⚠️ **重要：明文密钥只在创建时显示一次，刷新后无法再次查看。请立即复制并妥善保存。** 若遗失，只能删除后重新创建。
 
@@ -153,14 +145,14 @@ source ~/.zshrc
 临时生效（仅当前窗口）：
 
 ```powershell
-$env:ANTHROPIC_BASE_URL = "https://你的服务地址/api"
+$env:ANTHROPIC_BASE_URL = "https://ai4warder.com/api"
 $env:ANTHROPIC_AUTH_TOKEN = "af_xxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 
 永久生效（写入用户环境变量，需重启终端）：
 
 ```powershell
-[System.Environment]::SetEnvironmentVariable("ANTHROPIC_BASE_URL", "https://你的服务地址/api", "User")
+[System.Environment]::SetEnvironmentVariable("ANTHROPIC_BASE_URL", "https://ai4warder.com/api", "User")
 [System.Environment]::SetEnvironmentVariable("ANTHROPIC_AUTH_TOKEN", "af_xxxxxxxxxxxxxxxxxxxxxxxx", "User")
 ```
 
@@ -192,78 +184,7 @@ echo $env:ANTHROPIC_AUTH_TOKEN
 
 ---
 
-## 六、安装并使用 ai4warder-cc-statusline 状态栏插件
-
-`ai4warder-cc-statusline` 是一个 Claude Code 状态栏（statusline）插件，在 Claude Code 界面底部实时显示你的用量与钱包余额，方便随时掌握消耗情况，无需登录Ai4Warder 用户中心查看。
-
-### 能看到哪些信息
-
-装好后，Claude Code 底部会显示两行：
-
-- **第一行（本地会话）**：当前模型 · 项目目录 · 本次会话费用 · 已用时长
-- **第二行（来自服务端）**：
-  - **Upstream Usage**：上游 Claude 账号的配额窗口（5 小时 / 7 天 / sonnet）使用率与重置倒计时
-  - **Key Daily Usage**：当前 API Key 今日已用费用 / 日限额
-  - **Balance**：你的钱包余额
-
-示例：
-
-```
-Sonnet · my-project · $0.35 · 12m12s
-Upstream Usage: 5h 16% (3h29m), 7d 43% (3d), sonnet 21% (3d); Key Daily Usage: $14.85/$250; Balance: $99.05
-```
-
-![TODO]()
-
-### 前置条件
-
-- 已按「第五章」配置好 `ANTHROPIC_BASE_URL` 与 `ANTHROPIC_AUTH_TOKEN`，且 Claude Code 能正常对话。
-- 本机已安装 Node.js（安装 Claude Code 时已要求）。
-
-### 安装方式一：Claude Code 插件（推荐）
-
-在 Claude Code 里依次执行：
-
-```
-/plugin marketplace add ai4warder/ai4warder-cc-statusline
-/plugin install ai4warder-cc-statusline@ai4warder-marketplace
-/reload-plugins
-/ai4warder-cc-statusline:setup
-```
-
-`setup` 会自动下载脚本并写入状态栏配置。完成后重启 Claude Code 即可生效。
-
-### 安装方式二：手动安装
-
-下载脚本：
-
-```bash
-mkdir -p ~/.claude
-curl -fsSL -o ~/.claude/ai4warder-cc-statusline.js \
-  https://raw.githubusercontent.com/ai4warder/ai4warder-cc-statusline/main/ai4warder-cc-statusline.js
-```
-
-在 `~/.claude/settings.json` 中加入（或更新）`statusLine` 字段：
-
-```json
-{
-  "statusLine": {
-    "type": "command",
-    "command": "node ~/.claude/ai4warder-cc-statusline.js"
-  }
-}
-```
-
-重启 Claude Code 生效。Windows 用户路径同为用户目录下的 `.claude`（如 `C:\Users\<你的用户名>\.claude`），用 PowerShell 下载脚本并编辑同目录的 `settings.json` 即可。
-
-### 小提示
-
-- 余额、当日用量等数据由服务端按你的 API Key 实时返回，本地约 10 秒刷新一次。
-- 若状态栏底部只显示第一行或显示 `Claude —`，请确认 `ANTHROPIC_BASE_URL` / `ANTHROPIC_AUTH_TOKEN` 已生效，并重启 Claude Code。
-
----
-
-## 七、常见问题
+## 六、常见问题
 
 | 现象 | 排查方向 |
 |------|----------|
@@ -274,6 +195,9 @@ curl -fsSL -o ~/.claude/ai4warder-cc-statusline.js \
 | 调用报认证失败（401） | 检查 `ANTHROPIC_AUTH_TOKEN` 是否正确、密钥是否被停用 |
 | 调用无法连接 | 检查 `ANTHROPIC_BASE_URL` 是否为 `https://你的服务地址/api`，注意结尾路径 |
 | 单日 / 总额超限 | 密钥触发了你设置的成本限额，可在「API Keys」中调整限额 |
+| 529 Overload | 上游Claude服务器过载，请换个模型，或者几分钟后再重试 |
+| 5XX error | 上游Claude服务器过载，几分钟后再重试 |
+| Sonnet 1M Context 不可用| 使用Sonnet或者Opus 1M Context|
 
 ---
 
