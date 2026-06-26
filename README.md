@@ -14,7 +14,8 @@
     - [Windows（PowerShell）](#windowspowershell)
     - [安装与启动 Claude Code](#安装与启动-claude-code)
     - [验证配置](#验证配置)
-  - [六、常见问题](#六常见问题)
+  - [六、配置 Claude Desktop App](#六配置-claude-desktop-app)
+  - [七、常见问题](#七常见问题)
 
 ---
 
@@ -117,6 +118,8 @@ API Key 是你调用中转服务的认证凭证。
 
 ## 五、配置 Claude Code 工作环境
 
+**NOTE**:`如果您是Claude Desktop 图形软件用户，请直接跳到`[如何设置 Claude Desktop App](./Setup-Claude-Desktop-App.md)
+
 拿到 API Key 后，只需配置两个环境变量，把 Claude Code 指向本中转服务即可。
 
 - **服务地址（Base URL）**：`https://ai4warder.com/api`
@@ -184,7 +187,15 @@ echo $env:ANTHROPIC_AUTH_TOKEN
 
 ---
 
-## 六、常见问题
+## 六、配置 Claude Desktop App
+
+除了 Claude Code（命令行），你也可以通过 Claude Desktop App（桌面客户端）连接 Ai4Warder 服务。
+
+详细设置步骤请参阅：[如何设置 Claude Desktop App](./Setup-Claude-Desktop-App.md)
+
+---
+
+## 七、常见问题
 
 | 现象 | 排查方向 |
 |------|----------|
