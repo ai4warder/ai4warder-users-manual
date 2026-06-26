@@ -1,6 +1,8 @@
 # 如何设置Claude Desktop App
 
-[Claude Desktop App是什么，TBD]
+Claude Desktop App 是 Anthropic 官方推出的桌面客户端（支持 macOS 和 Windows），提供与 Claude 模型的对话交互界面。与 Claude Code（命令行工具）不同，Desktop App 更适合日常聊天、写作、文档分析等通用场景。
+
+通过将 Desktop App 配置为连接 Ai4Warder 中转服务器，你可以使用在本站创建的 API Key 直接在桌面端与 Claude 对话，费用从你的 Ai4Warder 钱包余额中按量扣除。
 
 ## 下载并安装Claude Desktop App
 
