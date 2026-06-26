@@ -1,0 +1,11 @@
+{
+  "$schemaVersion": 2,
+  "inference": {
+    "provider": "gateway",
+    "baseUrl": "https://ai4warder.com/api",
+    "credential": {
+      "kind": "static",
+      "apiKey": "your api key"
+    }
+  }
+}
