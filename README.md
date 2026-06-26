@@ -15,6 +15,8 @@
     - [安装与启动 Claude Code](#安装与启动-claude-code)
     - [验证配置](#验证配置)
   - [六、配置 Claude Desktop App](#六配置-claude-desktop-app)
+    - [下载并安装](#下载并安装)
+    - [设置连接 Ai4Warder 服务器](#设置连接-ai4warder-服务器)
   - [七、常见问题](#七常见问题)
 
 ---
@@ -118,7 +120,7 @@ API Key 是你调用中转服务的认证凭证。
 
 ## 五、配置 Claude Code 工作环境
 
-**NOTE**:`如果您是Claude Desktop 图形软件用户，请直接跳到`[如何设置 Claude Desktop App](./Setup-Claude-Desktop-App.md)
+**NOTE**：如果您是 Claude Desktop 图形软件用户，请直接跳到[六、配置 Claude Desktop App](#六配置-claude-desktop-app)
 
 拿到 API Key 后，只需配置两个环境变量，把 Claude Code 指向本中转服务即可。
 
@@ -189,9 +191,30 @@ echo $env:ANTHROPIC_AUTH_TOKEN
 
 ## 六、配置 Claude Desktop App
 
-除了 Claude Code（命令行），你也可以通过 Claude Desktop App（桌面客户端）连接 Ai4Warder 服务。
+Claude Desktop App 是 Anthropic 官方推出的桌面客户端（支持 macOS 和 Windows），提供与 Claude 模型的对话交互界面。与 Claude Code（命令行工具）不同，Desktop App 更适合日常聊天、写作、文档分析等通用场景。
 
-详细设置步骤请参阅：[如何设置 Claude Desktop App](./Setup-Claude-Desktop-App.md)
+通过将 Desktop App 配置为连接 Ai4Warder 中转服务器，你可以使用在本站创建的 API Key 直接在桌面端与 Claude 对话，费用从你的 Ai4Warder 钱包余额中按量扣除。
+
+### 下载并安装
+
+请自行到[Claude官网](https://claude.com/download)下载并安装Claude Desktop App。
+
+### 设置连接 Ai4Warder 服务器
+
+- 启动Claude Desktop，先不要登录；
+- Mac端在顶部菜单栏寻找（Windows按官方文档，点击桌面版左上角三条横线）：
+`Help -> Troubleshooting -> Enable Developer mode`
+软件可能会自动重启；
+- 下载[ai4warder_prod.json](./ai4warder_prod.json)配置文件。注意存储的文件名必须是`*.json`。
+- 重新在菜单栏找`Developer -> Configure third-party inference`,点击进入配置界面, 点击右上角的"Default"按钮, 选择"import configuration"，导入上一步下载的配置文件,点击确认按钮；
+![](./imgs/desktop-connections.png)
+![](./imgs/import-conf.png)
+![](./imgs/import-conf2.png)
+- 填入你在本站创建的API KEY（可以与Claude Code共用KEY），保存。点击"Test connection"按钮，如果小圆点显示绿色则表示连接成功；如果显示橙色则表示测试返回错误。
+![](./imgs/set-api-key.png)
+- 点击窗口右下方应用和保存按钮，软件会自动登录。
+- 此时，可以在Desktop软件中聊天测试。
+![](./imgs/desktop-test.png)
 
 ---
 
